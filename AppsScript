@@ -1,0 +1,19 @@
+//Apps Script Google
+
+function setTableProperties() {
+  //Colocar el identificador de documento de Google Docs
+  var doc = DocumentApp.openById("1VP5z9VHm1INNsaoFXqhkU_FsB3xA6VG8taMaRwgpjtw");
+  var tables = doc.getBody().getTables();
+  tables.forEach((table) => {
+  for (let r = 0 ; r < table.getNumRows(); r++) { 
+        row = table.getRow(r);
+        for(let c = 0; c < row.getNumChildren(); c++){
+          if(table.getCell(r,c).getBackgroundColor() == null){
+            Logger.log('Se encontró celda verde');
+            table.getCell(r,c).setBackgroundColor('#FFFFFF');   
+            Logger.log('Se cambió a blanco');
+          }
+        }
+    }
+  });
+}
